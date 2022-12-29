@@ -34,6 +34,12 @@ def get_candidates_by_name(candidate_name):
     :param candidate_name:
     :return:
     """
+    result = []
+    for candidate in load_candidates_from_json():
+        if candidate_name.lower() in candidate['name'].lower():
+            result.append(candidate)
+    return result
+
 
 def get_candidates_by_skill(skill_name):
     """
@@ -41,6 +47,10 @@ def get_candidates_by_skill(skill_name):
     :param skill_name:
     :return:
     """
-
-
+    result = []
+    for candidate in get_candidates_all():
+        skills = candidate['skills'].lower().split(', ')
+        if skill_name in skills:
+            result.append(candidate)
+    return result
 
